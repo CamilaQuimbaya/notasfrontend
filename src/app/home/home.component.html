@@ -1,0 +1,39 @@
+<p>home works!</p>
+<div>
+    <h2>data api </h2>
+    <ul>
+        <li *ngFor="let item of data">
+            <p>{{item.id}}</p>
+            <p>{{item.titulo}}</p>
+            <p>{{item.nota}}</p>
+            <p>{{item.fecha}}</p>
+            <button (click)="editNota(item)">Editar</button>
+            <button (click)="deleteNota(item._id)">Eliminar</button>
+        </li>
+    </ul>
+</div>
+
+
+<div>
+    <h3>{{ editing ? 'Editar Nota' : 'Crear Nota'}}</h3>
+    <form (ngSubmit)="onSubmit()">
+        <label for="titulo">Titulo</label>
+        <input type="text"
+        id="titulo"
+        [(ngModel)]="currentNota.titulo"
+        placeholder="Titulo"
+        name="titulo"
+        required>
+
+        <label for="nota">Nota</label>
+        <textarea
+        id="nota"
+        [(ngModel)]="currentNota.nota"
+        placeholder="Nota"
+        name="nota"
+        required></textarea>
+
+        <button type="submit">{{ editing ? 'actualizar' : 'crear'}}</button>
+        <button type="button" (click)="resetForm()" *ngIf="editing">Cancelar</button>
+    </form>
+</div>
